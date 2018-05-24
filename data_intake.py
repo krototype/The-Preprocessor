@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import sys
 import data_impute
+import univariate
 
 functionality=[
     "Data_Description",
@@ -35,6 +36,19 @@ def description(df):
         else:
             print("wrong_input")
 
+    return
+
+def find_target(df):
+    print("List of column names")
+    colm_names=list(df.columns.values)
+
+    for colm in colm_names:
+        print(colm)
+
+    target=input("Enter the target value")
+
+    return target
+
 
 if len(sys.argv)<=1:
     print("\nEnter dataset address")
@@ -46,6 +60,10 @@ else:
 df=pd.read_csv(df_input)
 print(" -> Data taken from "+df_input)
 
+target_colm=find_target(df)
+
+y=df[target_colm]
+X=df.drop(target_colm,axis=1)
 
 while(1):
     print("\nWhat do you want")
@@ -60,11 +78,13 @@ while(1):
         exit()
     elif inp==1:
         print(" --> Data Description:")
-        description(df)
+        description(X)
     elif inp==2:
         print(" --> Data imputation:")
-        imp_obj=data_impute.Imputer(df)
+        imp_obj=data_impute.Imputer(X)
         df=imp_obj.impute()
     elif inp==3:
-
+        print(" --> Univariate Analysis:")
+        uni_obj=univariate.Univariate(X)
+        df=uni_obj.univariate_plot()
 

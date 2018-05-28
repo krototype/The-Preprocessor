@@ -5,13 +5,16 @@ import pandas as pd
 class Univariate:
     def __init__(self,df):
         self.df=df
+
+
     def colm_details(self,colm):
-        print("Details about : "+colm)
-        print("Mean "+str(self.df[colm].mean()))
-        print("Median " + str(self.df[colm].median()))
-        print("Mode " + str(self.df[colm].mode()))
+        print(self.df[colm].describe())
+        print("\n")
+        print("Null count : " + str(self.df[colm].isnull().sum()))
+        print("\n")
 
         return
+
 
     def create_plot(self,colm):
         #fig = plt.figure()
@@ -24,20 +27,40 @@ class Univariate:
         colm_type=int(input())
 
         if colm_type==1:
+            self.colm_details(colm)
             print(self.df[colm].value_counts())
             print("\n")
+
+            print(self.df[colm].value_counts()/len(self.df[colm]))
+            print("\n")
+
             self.df[colm].value_counts().plot.bar()
             plt.show()
+
         elif colm_type==2:
             self.colm_details(colm)
 
-            plot_type=int(input("Does Colm contain a ide range of values[0/1]\n"))
+            print("Do you want histogram[0/1]")
+            hist=int(input())
+            if hist==1:
+                self.df[colm].plot.hist()
+                plt.ylabel(colm)
+                plt.show()
 
-            if plot_type==0:
-                self.df[colm].value_counts().sort_index().plot.bar()
-            else:
+            print("Do you want lineplot[0/1]")
+            linep = int(input())
+            if linep == 1:
                 self.df[colm].value_counts().sort_index().plot.line()
-            plt.show()
+                plt.ylabel(colm)
+                plt.show()
+
+            print("Do you want boxplot[0/1]")
+            boxp = int(input())
+            if boxp == 1:
+                self.df[colm].plot.box()
+                plt.ylabel(colm)
+                plt.show()
+
         else:
             return
 

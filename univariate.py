@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 
 class Univariate:
+    
     def __init__(self,df):
         self.df=df
 
@@ -17,8 +18,6 @@ class Univariate:
 
 
     def create_plot(self,colm):
-        #fig = plt.figure()
-        #ax = fig.add_subplot(111)
 
         print('''Is the variable :
               \n1.Categorical 
@@ -61,8 +60,8 @@ class Univariate:
                 plt.ylabel(colm)
                 plt.show()
 
-        else:
-            return
+        input("Press ENTER to continue")
+        return
 
 
     def univariate_plot(self):

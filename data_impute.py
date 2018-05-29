@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed May 16 14:25:12 2018
-
-@author: hp
-"""
 '''
 Imputation:
 Helps in filling up the null values
@@ -22,6 +16,7 @@ import pandas as pd
 import numpy as np
 
 class Imputer:
+
     def __init__(self,df):
         self.df=df
 

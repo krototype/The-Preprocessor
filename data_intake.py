@@ -1,20 +1,15 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed May 16 12:06:43 2018
-
-@author: hp
-"""
-
 import pandas as pd
 import numpy as np
 import sys
 import data_impute
 import univariate
+import bivariate
 
 functionality=[
     "Data_Description",
     "Data_Imputation",
-    "Univariate Analysis"
+    "Univariate Analysis",
+    "Bivariate Analysis"
 ]
 
 def description(df):
@@ -87,4 +82,8 @@ while(1):
         print(" --> Univariate Analysis:")
         uni_obj=univariate.Univariate(X)
         df=uni_obj.univariate_plot()
+    elif inp==4:
+        print(" --> Bivariate Analysis:")
+        bi_obj = bivariate.Bivariate(X)
+        df = bi_obj.bivariate_plot()
 

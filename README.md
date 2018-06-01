@@ -25,3 +25,6 @@ The Preprocessor is a CLI tool which would help the data-scientist in preprocess
 * seaborn
 * matplotlib
 * scipy
+
+###### Note : Added 2 datasets along with repo just for testing purpose
+###### Note : When giving the dataset either enter the path of dataset if needed

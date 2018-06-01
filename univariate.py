@@ -1,6 +1,15 @@
+'''Univariate Analysis:
+Helps in analysis of continuous/categorical data
+
+1. Data description
+2.Plotting of data '''
+
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
 import numpy as np
 import pandas as pd
+
 
 class Univariate:
     
@@ -9,16 +18,16 @@ class Univariate:
 
 
     def colm_details(self,colm):
+        #Describes the details for the columns
         print(self.df[colm].describe())
         print("\n")
         print("Null count : " + str(self.df[colm].isnull().sum()))
-        print("\n")
 
         return
 
 
     def create_plot(self,colm):
-
+        #Creates the plot for the function
         print('''Is the variable :
               \n1.Categorical 
               \n2.Continuos''')
@@ -26,10 +35,14 @@ class Univariate:
         colm_type=int(input())
 
         if colm_type==1:
+            #Categorical Data Analysis
+            print("Column Details:")
             self.colm_details(colm)
+            print("Individual category total count:")
             print(self.df[colm].value_counts())
             print("\n")
 
+            print("Individual category percentage count:")
             print(self.df[colm].value_counts()/len(self.df[colm]))
             print("\n")
 
@@ -37,6 +50,8 @@ class Univariate:
             plt.show()
 
         elif colm_type==2:
+            #Continuous Data Analysis
+            print("Column Details:")
             self.colm_details(colm)
 
             print("Do you want histogram[0/1]")
@@ -65,7 +80,16 @@ class Univariate:
 
 
     def univariate_plot(self):
-        print("Enter the column")
-        colm=input()
+        #landing function from data_intake
 
-        self.create_plot(colm)
+        while(1):
+            print("Enter the column , which you want to analyse")
+            colm=input("Enter -1 to exit ")
+
+            if colm=="-1":
+                break;
+
+            #calling the function to create the plot and describe the column
+            self.create_plot(colm)
+
+        return self.df

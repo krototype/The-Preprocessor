@@ -1,12 +1,32 @@
+'''Bivariate Analysis:
+Helps in bivariate analysis of data
+Plotting of the data'''
+
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
 import numpy as np
 import pandas as pd
 from scipy.stats import chi2_contingency
+import seaborn as sns
 
 class Bivariate:
 
     def __init__(self,df):
         self.df=df
+
+    def correlation_matrix(self):
+        print("Do you want correlation matrix[0/1]")
+        inp=input()
+
+        if inp=="0":
+            return
+
+        corr = self.df.corr()
+        sns.heatmap(corr,
+                    xticklabels=corr.columns.values,
+                    yticklabels=corr.columns.values)
+        plt.show()
 
 
     def continuous_continuous(self,colm1,colm2):
@@ -26,6 +46,7 @@ class Bivariate:
 
 
     def continuous_categorical(self,colm1,colm2):
+        print("Mean when grouping according to {}".format(colm2))
         print(self.df.groupby(colm2)[colm1].mean())
 
         self.df.groupby(colm2)[colm1].mean().plot.bar()
@@ -37,11 +58,15 @@ class Bivariate:
         return
 
     def categorical_categorical(self,colm1,colm2):
+        stacked_plot=pd.crosstab(self.df[colm1], self.df[colm2])
+        print("Cross table of {} and {}".format(colm1,colm2))
         print(pd.crosstab(self.df[colm1],self.df[colm2]))
 
+        print("Chi 2 test :")
         print(chi2_contingency(pd.crosstab(self.df[colm1],self.df[colm2])))
 
-        self.df.groupby(colm2)[colm1].value_counts().plot.bar()
+
+        stacked_plot.plot.bar()
         plt.ylabel(colm1)
         plt.xlabel(colm2)
         plt.show()
@@ -50,20 +75,43 @@ class Bivariate:
         return
 
     def bivariate_plot(self):
-        print("Enter colm 1 :")
-        colm1=input()
-        type_colm1 = int(input("Is it categorical[0/1] "))
+        #Landing function
+        next_iter="0"
 
-        print("Enter colm 2 :")
-        colm2 = input()
-        type_colm2 = int(input("Is it categorical[0/1] "))
+        self.correlation_matrix()
 
-        if type_colm1==1 and type_colm2==0:
-            self.continuous_categorical(colm2 , colm1)
-        elif type_colm1==0 and type_colm2==1:
-            self.continuous_categorical(colm1 , colm2)
-        elif type_colm1==0 and type_colm2==0:
-            self.continuous_continuous(colm1 , colm2)
-        elif type_colm1==1 and type_colm2==1:
-            self.categorical_categorical(colm1 , colm2)
+        while(next_iter!="-1"):
+            print("Enter colm 1 :")
+            colm1=input()
+            type_colm1 = int(input("Is it categorical[0/1] "))
+
+            print("Enter colm 2 :")
+            colm2 = input()
+            type_colm2 = int(input("Is it categorical[0/1] "))
+
+            if type_colm1==1 and type_colm2==0:
+                try:
+                    self.continuous_categorical(colm2 , colm1)
+                except RuntimeError:
+                    self.continuous_categorical(colm1, colm2)
+
+            elif type_colm1==0 and type_colm2==1:
+                try:
+                    self.continuous_categorical(colm1 , colm2)
+                except RuntimeError:
+                    self.continuous_categorical(colm2, colm1)
+
+            elif type_colm1==0 and type_colm2==0:
+                self.continuous_continuous(colm1 , colm2)
+
+            elif type_colm1==1 and type_colm2==1:
+                try:
+                    self.categorical_categorical(colm1 , colm2)
+                except RuntimeError:
+                    self.categorical_categorical(colm2, colm1)
+
+            next_iter=input("Press -1 to exit/ Press any other character to continue")
+
+
+        return self.df
 

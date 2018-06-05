@@ -134,7 +134,7 @@ class Imputer:
 
             input("Press enter to move to next column")
 
-        return
+        return self.df
 
     def impute(self):
         #Landing function from data_intake
@@ -148,5 +148,5 @@ class Imputer:
         procede_inp=input("Enter -1 to return , press any key to impute")
         if procede_inp=="-1":
             return
-        self.suggest_imp(colm_names)
+        self.df=self.suggest_imp(colm_names)
         return self.df

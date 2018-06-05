@@ -1,3 +1,12 @@
+'''Data Intake:
+Main Script which starts The Preprocessor
+Options provided
+1.Data Description
+2.Data Imputation
+3.Univariate Analysis
+4.Bivariate Analysis
+5.Data Wrangling
+6.Download Dataset'''
 import pandas as pd
 import numpy as np
 import sys
@@ -5,12 +14,14 @@ import data_impute
 import univariate
 import bivariate
 import download
+import wrangling
 
 functionality=[
     "Data_Description",
     "Data_Imputation",
     "Univariate Analysis",
     "Bivariate Analysis",
+    "Data Wrangling",
     "Download Dataset"
 ]
 def describe_column(df):
@@ -122,10 +133,14 @@ def preprocessor():
             print(" --> Bivariate Analysis:")
             bi_obj = bivariate.Bivariate(df)
             df = bi_obj.bivariate_plot()
-        elif inp==5:
+        elif inp==6:
             print(" --> Download Dataset")
             down_obj=download.Download(df)
             down_obj.make_dataset()
+        elif inp==5:
+            print(" --> Data Wrangling")
+            wrangle_obj = wrangling.Wrangle(df)
+            df=wrangle_obj.wrangle()
 
     return
 

@@ -54,6 +54,12 @@ class Bivariate:
         plt.xlabel(colm2)
         plt.show()
 
+        var = colm2
+        data = pd.concat([self.df[colm1], self.df[var]], axis=1)
+        f, ax = plt.subplots(figsize=(8, 6))
+        fig = sns.boxplot(x=var, y=colm1, data=data)
+        plt.show()
+
         input("Press ENTER to continue")
         return
 
@@ -67,8 +73,8 @@ class Bivariate:
 
 
         stacked_plot.plot.bar()
-        plt.ylabel(colm1)
-        plt.xlabel(colm2)
+        plt.ylabel(colm2)
+        plt.xlabel(colm1)
         plt.show()
 
         input("Press ENTER to continue")
@@ -83,10 +89,12 @@ class Bivariate:
         while(next_iter!="-1"):
             print("Enter colm 1 :")
             colm1=input()
+            colm1 = colm1.lower()
             type_colm1 = int(input("Is it categorical[0/1] "))
 
             print("Enter colm 2 :")
             colm2 = input()
+            colm2 = colm2.lower()
             type_colm2 = int(input("Is it categorical[0/1] "))
 
             if type_colm1==1 and type_colm2==0:

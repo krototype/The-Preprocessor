@@ -13,12 +13,14 @@ functionality=[
     "Bivariate Analysis",
     "Download Dataset"
 ]
-def describe_column():
+def describe_column(df):
     #Describes a particular column
     print("Enter column name , which you want to describe :")
     colm=input()
-    df[colm].describe()
+    colm=colm.lower()
+    print(df[colm].describe())
 
+    input("Press Enter to continue")
     return
 
 
@@ -40,7 +42,7 @@ def description(df):
         elif desc_type == 2:
             print(df.describe(include=[np.object]))
         elif desc_type == 3:
-            describe_colm()
+            describe_column(df)
         elif desc_type == -1:
             break
         else:
@@ -58,9 +60,20 @@ def find_target(df):
         print(colm)
 
     target=input("Enter the target value ")
+    target=target.lower()
 
     return target
 
+
+def change_column_lower(df):
+    colm_dict={}
+    colm_names = list(df.columns.values)
+    for colm in colm_names:
+        colm_dict[colm]=colm.lower()
+
+    df.rename(columns=colm_dict,inplace=True)
+
+    return df
 
 def preprocessor():
     #Taking dataset as input
@@ -73,6 +86,8 @@ def preprocessor():
     #Reading the dataset
     df=pd.read_csv(df_input)
     print(" -> Data taken from "+df_input)
+
+    df=change_column_lower(df)
 
     #deciding the target variable
     target_colm=find_target(df)

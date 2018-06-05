@@ -85,6 +85,7 @@ class Univariate:
         while(1):
             print("Enter the column , which you want to analyse")
             colm=input("Enter -1 to exit ")
+            colm = colm.lower()
 
             if colm=="-1":
                 break;

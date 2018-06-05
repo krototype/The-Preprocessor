@@ -54,7 +54,7 @@ class Imputer:
 
     def colm_avg(self,colm):
         #fills the column with avg data
-        print("Filling the nan values with the average of the column")
+        print("Filling the nan values with the average of the column\n")
 
         self.df[colm] = self.df[colm].fillna(self.df[colm].mean())
 
@@ -63,7 +63,7 @@ class Imputer:
 
     def colm_median(self,colm):
         #fills the column with median of data
-        print("Filling the nan values with the average of the column")
+        print("Filling the nan values with the median of the column\n")
 
         self.df[colm] = self.df[colm].fillna(self.df[colm].median())
 
@@ -72,7 +72,7 @@ class Imputer:
 
     def colm_mode(self,colm):
         #fills the column with mode of data
-        print("Filling the nan values with the average of the column")
+        print("Filling the nan values with the mode of the column\n")
 
         self.df[colm] = self.df[colm].fillna(self.df[colm].mode()[0])
 

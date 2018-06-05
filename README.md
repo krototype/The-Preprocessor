@@ -1,7 +1,7 @@
-# The-Preprocessor
-The Preprocessor is a CLI tool which would help the data-scientist in preprocessing there data without actually writing the code.
+# :pencil: The-Preprocessor 
+The Preprocessor is a CLI tool which would help the data-scientist in preprocessing there data without actually writing the code :smiley:
 
-## Features
+## :ledger: Features
 * Helps in Data Description and knowing more about data.
 * Univariate analysis along with graph plotting.
 * Bivariate analysis along with graph plotting to know the relation between data.
@@ -9,7 +9,7 @@ The Preprocessor is a CLI tool which would help the data-scientist in preprocess
 * Wrangling with data like : One Hot Encoding , Normalization , Column Dropping
 * We can even download the new dataset after preprocessing.
 
-## Installation
+## :arrow_down: Installation
 1. Clone the repository.
 2. Move to the folder where repository is stored.
 3. Run the command
@@ -19,7 +19,7 @@ The Preprocessor is a CLI tool which would help the data-scientist in preprocess
   
 4. Now you would be guided through.
 
-## Modules Used
+## :open_file_folder: Modules Used
 * pandas
 * numpy
 * sys
@@ -28,5 +28,5 @@ The Preprocessor is a CLI tool which would help the data-scientist in preprocess
 * scipy
 * sklearn
 
-###### Note : Added 1 dataset along with repo just for testing purpose(Titanic dataset used)
-###### Note : When giving the dataset either enter the path of dataset if needed or store your dataset in the same folder
+###### Note : Added 1 dataset along with repo just for testing purpose(Titanic dataset used) :wink:
+###### Note : When giving the dataset either enter the path of dataset if needed or store your dataset in the same folder :sweat_smile:

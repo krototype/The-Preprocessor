@@ -5,7 +5,8 @@ The Preprocessor is a CLI tool which would help the data-scientist in preprocess
 * Helps in Data Description and knowing more about data.
 * Univariate analysis along with graph plotting.
 * Bivariate analysis along with graph plotting to know the relation between data.
-* Data imputation and removing of columns if needed.
+* Data imputation and removing of rows if needed.
+* Wrangling with data like : One Hot Encoding , Normalization , Column Dropping
 * We can even download the new dataset after preprocessing.
 
 ## Installation
@@ -25,6 +26,7 @@ The Preprocessor is a CLI tool which would help the data-scientist in preprocess
 * seaborn
 * matplotlib
 * scipy
+* sklearn
 
-###### Note : Added 2 datasets along with repo just for testing purpose
-###### Note : When giving the dataset either enter the path of dataset if needed
+###### Note : Added 1 dataset along with repo just for testing purpose(Titanic dataset used)
+###### Note : When giving the dataset either enter the path of dataset if needed or store your dataset in the same folder
